@@ -72,7 +72,7 @@ model3.add(Dense(64, activation="relu")) # 층이 얕기 때문에 전부 relu �
 model3.add(Dense(10, activation="softmax"))# 출력층
 
 model3.compile(loss="categorical_crossentropy", # 원핫 인코딩을 내부에서 하고 싶다면 sparse_categorical_crossentropy 사용하기
-            optimizer=Adam(lr = 0.01),
+            optimizer=Adam(lr = 0.001), # learning rate 가 너무 크다면 학습이 안 안되는 경우를 대비하여 보폭을 좁게 설정!
             metrics=["accuracy"]) # SGD 객체 생성
 
 h3 = model3.fit(X_train, y_train_categorial,
