@@ -84,11 +84,11 @@ plt.plot(h1.history["accuracy"], label = "sigmoid+SGD")
 plt.plot(h1.history["val_accuracy"], label = "val_sigmoid+SGD")
 
 # 2. relu+SGD
-plt.plot(h1.history["accuracy"], label = "relu+SGD")
-plt.plot(h1.history["val_accuracy"], label = "val_relu+SGD")
+plt.plot(h2.history["accuracy"], label = "relu+SGD")
+plt.plot(h2.history["val_accuracy"], label = "val_relu+SGD")
 # 3. relu+Adam
-plt.plot(h1.history["accuracy"], label = "relu+Adam")
-plt.plot(h1.history["val_accuracy"], label = "val_relu+Adam")
+plt.plot(h3.history["accuracy"], label = "relu+Adam")
+plt.plot(h3.history["val_accuracy"], label = "val_relu+Adam")
 
 plt.legend() # 범례
 plt.show()
