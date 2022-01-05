@@ -96,4 +96,3 @@ m = load_model("./my_fashion_mode.h5")
 
 m.predict(X_test[100:102]) # 100, 101 번째 예측하기
 
-|
