@@ -53,6 +53,8 @@ def detect_and_predict_mask(frame, faceNet, maskNet):# 얼굴과 마스크를 �
 			# extract the face ROI, convert it from BGR to RGB channel
 			# ordering, resize it to 224x224, and preprocess it
 			face = frame[startY:endY, startX:endX]
+			if face.shape[0] == 0:
+				continue
 			face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
 			face = cv2.resize(face, (224, 224))
 			face = img_to_array(face)
