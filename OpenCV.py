@@ -121,7 +121,7 @@ img = cv2.imread("./data/hamster.jpg", cv2.IMREAD_GRAYSCALE)
 #데이터 이진화 : OCR 손글씨에 주로 활용
 _ , img = cv2.threshold(img, # 변화시킬 이미지
                        100, # 변화줄 이진 분류 임계치 190 이상, 미만  / 임계치가 매우 중요!
-                       255, # 임계치보다 클 경우 변화된 후 값
+                       255, # 임계치보다 클 경우 적용될 값
                        cv2.THRESH_BINARY)
 
 plt.imshow(img, cmap="gray")
@@ -162,7 +162,7 @@ img = cv2.imread("./data/hamster.jpg", cv2.IMREAD_COLOR)
 
 p1 = img[50,50] # 50, 50에 위치한 픽셀 검출 / BGR
 print(p1) # BGR
-# 이미지 처리 시 왼쪽상단부터 좌표 (0,0) 행, 열
+# 이미지 처리 시 왼쪽상단부터 좌표 (0,0) 로 기준이 된다. 행, 열
 print(p1.dtype)
 print(img.shape)
 
@@ -183,7 +183,7 @@ cv2.destroyAllWindows()
 """
 
 img = cv2.imread("./data/hamster.jpg", cv2.IMREAD_COLOR)
-# (좌상단: 우상단), (좌하단, 우하단), (RGB 색상), 두께 = 3  / 가로 세로 
+# 이미지, (좌상단 좌표), (우하단 좌표), (RGB 색상), 두께 = 3  / 가로 세로 
 img_result = cv2.rectangle(img, (40,30),(200,130),(255,0,0),3)
 img_result2 = cv2.putText(img, "hamster", (70,20), cv2.FONT_HERSHEY_COMPLEX, 1, (200,0,0),2)
 
@@ -205,23 +205,23 @@ cv2.data.haarcascades
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_frontalface_default.xml') # 정면얼굴 기본값 xml파일
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_eye.xml') # 눈 기본값 xml파일
 
-# 얼굴사진 로딩 / 사진 경로
+# 얼굴사진 로딩
 face_img = cv2.imread("./data/1.jpg")
 
 
-# 얼굴 검출 detectMulitScale(이미지, 커널 스케일, 최소 이웃값)
+# 얼굴 검출 메소드 detectMulitScale (이미지, 커널 스케일, 최소 이웃값)
 # 커널 스케일 : 검출이 될 때까지 커널의 크기를 n배씩 키운다
 # 최소 이웃값 : 스케일이 최소 n개 겹쳐야 얼굴로 인식
 faces = face_cascade.detectMultiScale(face_img,1.3,5)
 # 눈 검출
 eyes = eye_cascade.detectMultiScale(face_img,1.2,4)
 
-print(len(eyes))
 print(len(faces))
+print(len(eyes))
 
+# 얼굴 영역 사각형 그리기
 for(x,y,w,h) in faces:
-    # 얼굴 영역 사각형 그리기
-    # (좌상단: 우상단), (좌하단, 우하단), (RGB 색상), 두께 = 3  / 가로 세로
+    # 이미지,(좌상단 좌표), (우하단 좌표), (RGB 색상), 두께 = 3  / 가로 세로
     cv2.rectangle(face_img,(x,y),(x+w,y+h),(255,0,0),3)
     
 for(x,y,w,h) in eyes:
