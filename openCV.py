@@ -85,7 +85,7 @@ if b:
     cv2.destroyAllWindows()
 
 # 영상, 이미지 작업 시 반드시 release()를 사용해서 메모리를 깔끔하게 유지하기
-my_cam.release() # 메모리에 적재된 상태를 해제 하기 == close()
+my_cam.release() # 메모리에 적재된 상태를 해제하기 == close()
 
 try:
     print("영상 로딩을 시작합니다")
