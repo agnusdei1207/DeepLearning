@@ -224,8 +224,9 @@ for(x,y,w,h) in faces:
     # 이미지,(좌상단 좌표), (우하단 좌표), (RGB 색상), 두께 = 3  / 가로 세로
     cv2.rectangle(face_img,(x,y),(x+w,y+h),(255,0,0),3)
     
+# 눈 영역 사각형 그리기
 for(x,y,w,h) in eyes:
-    # 눈 영역 사각형 그리기
+    # 이미지,(좌상단 좌표), (우하단 좌표), (RGB 색상), 두께 = 3  / 가로 세로
     cv2.rectangle(face_img,(x,y),(x+w,y+h),(0,0,255),3)
 
 cv2.imshow('face',face_img)
@@ -235,10 +236,13 @@ cv2.destroyAllWindows()
 # 동영상 얼굴 그리기
 face_cascade =  cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_frontalface_default.xml')
 
+# 얼굴만 추가할 리스트
+# face_list = []
+
 try:
     print("로딩중")
     #my_cam = cv2.VideoCapture(0) : 0 >> 연결된 캠
-    my_cam = cv2.VideoCapture("./data/chopin_16.mp4")
+    my_cam = cv2.VideoCapture("./data/chopin_16.mp4") # 경로
 except:
     print("로딩 실패")
 
@@ -249,13 +253,15 @@ while True:
         break
     else:
         faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+        
+        # 사각형 그리기
         for (x,y,w,h) in faces:
             cv2.rectangle(frame, (x,y), (x+w, y+h), (255,0,0), 3)
-            # 여기서 ROI 영역 잘라내기하고 리스트에 추가하면 얼굴만 추가 할 수 있어요.
-            face_memory.append(frame)
+            # 여기서 ROI 영역 잘라내고 리스트에 추가하면 얼굴만 추가 할 수 있어요.
+            # face_list.append()
             cv2.imshow("face_result", frame)
         
-    k = cv2.waitKey(33) # 1초에 약 33장
+    k = cv2.waitKey(33) # 33ms 딜레이 : while 문이 너무 빨라 버퍼 문제를 방지하기 위함 
     if k == 27: # esc 키를 입력할 경우
         break
 
