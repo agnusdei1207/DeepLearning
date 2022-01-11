@@ -1,5 +1,6 @@
 # USAGE
 # python detect_mask_video.py -v path
+# -v 옵션은 업로드를 위해 사용
 
 # import the necessary packages
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
