@@ -37,30 +37,34 @@ cv2.waitKey(0) # waitKey(0) : 사용자가 키를 입력할 때까지 무한정 
 cv2.destroyAllWindows() # 모든 창 제거
 
 # 이미지 로딩 흑백
-img  = cv2.imread("./data/hamster.jpg",  # 읽을 이미지 경로
-                 cv2.IMREAD_GRAYSCALE) # 컬러사진으로 읽겠다
-img = cv2.resize(img,(1000,1000), interpolation = cv2.INTER_CUBIC) # 사진 축소 / interpolation : 작은 사진의 크기를 늘렸을 때 어떻게 빈공간을 메울래?
+img  = cv2.imread("./data/hamster.jpg",  
+                 cv2.IMREAD_GRAYSCALE) # 흑백 사진
+img = cv2.resize(img,(1000,1000), interpolation = cv2.INTER_CUBIC) 
 print(img)
 print(f"이미지 차원 : {img.shape}")
 
-cv2.imshow("ham~", # 보여줄 사진 이름
-         img) # 실제로 보여줄 이미지 데이터
-cv2.waitKey(0) # waitKey(0) : 사용자가 키를 입력할 때까지 무한정 기다려라  / milli second / Java 의 Scanner와 같은 원리
-cv2.destroyAllWindows() # 모든 창 제거
+cv2.imshow("ham~", 
+         img) 
+cv2.waitKey(0) 
+cv2.destroyAllWindows() 
 
 import matplotlib.pyplot as plt
 
 img = cv2.imread("./data/hamster.jpg", cv2.IMREAD_COLOR)
 
 # opencv 와 matplotlib 색상체계가 다르다
-# opencv > BGR
-# plt > RGB
+# opencv : BGR
+# plt : RGB
 
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 plt.imshow(img_rgb)
 plt.title("ham")
 plt.show()
+
+
+###################################################################################################################################################################
+
 
 # 영상 로딩
 try:
